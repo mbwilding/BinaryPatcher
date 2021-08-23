@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B93D65DA-C0D1-4FC1-B861-3CB94BE2149A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>PacketTracerConfigUnlock</RootNamespace>
-    <AssemblyName>PacketTracerConfigUnlock</AssemblyName>
+    <RootNamespace>BinaryPatcher</RootNamespace>
+    <AssemblyName>BinaryPatcher</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -60,13 +60,13 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>PacketTracerConfigUnlock.Program</StartupObject>
+    <StartupObject>BinaryPatcher.Program</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>7C9148B6FC5245199EB5A8D55B03E50D01B1141E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>PacketTracerConfigUnlock_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>BinaryPatcher_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>false</GenerateManifests>
@@ -98,7 +98,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="app.manifest" />
-    <None Include="PacketTracerConfigUnlock_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />

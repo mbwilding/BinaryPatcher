@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace PacketTracerConfigUnlock
+namespace BinaryPatcher
 {
     public class TaskKill
     {

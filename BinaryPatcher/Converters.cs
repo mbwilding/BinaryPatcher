@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace PacketTracerConfigUnlock
+namespace BinaryPatcher
 {
     public class Converters
     {

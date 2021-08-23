@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace PacketTracerConfigUnlock
+namespace BinaryPatcher
 {
     public class Targets
     {
         public static void Run()
         {
+            // Values exported from Binary Difference
+
             Patch
             (
                 "Cisco Packet Tracer 7.2.2 (x86)",
@@ -52,7 +54,11 @@ namespace PacketTracerConfigUnlock
 
         private static void Patch(string name, string path, Dictionary<long, string> payloads)
         {
-            if (!File.Exists(path)) return;
+            if (!File.Exists(path))
+            {
+                Interface.Write(name + " not installed.", ConsoleColor.Gray);
+                return;
+            }
             var backup = path + ".bak";
             if (File.Exists(backup))
             {

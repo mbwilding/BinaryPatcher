@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31605.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PacketTracerConfigUnlock", "PacketTracerConfigUnlock\PacketTracerConfigUnlock.csproj", "{B93D65DA-C0D1-4FC1-B861-3CB94BE2149A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryPatcher", "BinaryPatcher\BinaryPatcher.csproj", "{B93D65DA-C0D1-4FC1-B861-3CB94BE2149A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -1,4 +1,4 @@
-﻿namespace PacketTracerConfigUnlock
+﻿namespace BinaryPatcher
 {
     internal class Program
     {
