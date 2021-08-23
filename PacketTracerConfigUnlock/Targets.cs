@@ -52,37 +52,24 @@ namespace PacketTracerConfigUnlock
 
         private static void Patch(string name, string path, Dictionary<long, string> payloads)
         {
-            if (!File.Exists(path)) { return; }
-
-            if (File.Exists(path + ".bak"))
+            if (!File.Exists(path)) return;
+            var backup = path + ".bak";
+            if (File.Exists(backup))
             {
                 Interface.Write(name + " has already been patched.", ConsoleColor.Blue);
                 return;
             }
-
             TaskKill.Run(Path.GetFileNameWithoutExtension(path));
-
-            File.Copy(path, path + ".bak");
-
-            var fileStream = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.Write);
-
-            foreach (var entry in payloads)
+            File.Copy(path, backup);
+            using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.Write))
             {
-                fileStream.Seek(entry.Key, SeekOrigin.Begin);
-                var patch = Converters.HexToBytes(entry.Value);
-                try
+                foreach (var entry in payloads)
                 {
+                    var patch = Converters.HexToBytes(entry.Value);
+                    fileStream.Seek(entry.Key, SeekOrigin.Begin);
                     fileStream.Write(patch, 0, patch.Length);
                 }
-                catch (Exception e)
-                {
-                    Interface.Write(e.ToString(), ConsoleColor.Red);
-                    throw;
-                }
             }
-
-            fileStream.Dispose();
-
             Interface.Write("Successfully patched " + name + ".", ConsoleColor.Green);
         }
     }
