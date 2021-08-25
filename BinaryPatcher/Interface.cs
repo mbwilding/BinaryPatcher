@@ -23,7 +23,7 @@ namespace BinaryPatcher
 
         public static void Finish()
         {
-            Write("\nPress any key to exit.", ConsoleColor.Cyan);
+            Write("\n | ¤ | Press any key to exit.", ConsoleColor.Cyan);
             Console.ReadKey();
         }
 

@@ -56,13 +56,13 @@ namespace BinaryPatcher
         {
             if (!File.Exists(path))
             {
-                Interface.Write(name + " not installed.", ConsoleColor.Gray);
+                Interface.Write(" | x | " + name + " not installed.", ConsoleColor.Gray);
                 return;
             }
             var backup = path + ".bak";
             if (File.Exists(backup))
             {
-                Interface.Write(name + " has already been patched.", ConsoleColor.Blue);
+                Interface.Write(" | > | " + name + " has already been patched.", ConsoleColor.Blue);
                 return;
             }
             TaskKill.Run(Path.GetFileNameWithoutExtension(path));
@@ -76,7 +76,7 @@ namespace BinaryPatcher
                     fileStream.Write(patch, 0, patch.Length);
                 }
             }
-            Interface.Write("Successfully patched " + name + ".", ConsoleColor.Green);
+            Interface.Write(" | ✓ | Successfully patched " + name + ".", ConsoleColor.Green);
         }
     }
 }
