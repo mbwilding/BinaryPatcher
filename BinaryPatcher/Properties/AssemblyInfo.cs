@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PacketTrackerConfigUnlocker")]
+[assembly: AssemblyTitle("Binary Patcher")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Wilding Studios")]
 [assembly: AssemblyProduct("PacketTrackerConfigUnlocker")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCopyright("Binary Patcher")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
