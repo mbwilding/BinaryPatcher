@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Wilding Studios")]
-[assembly: AssemblyProduct("PacketTrackerConfigUnlocker")]
+[assembly: AssemblyProduct("Binary Patcher")]
 [assembly: AssemblyCopyright("Binary Patcher")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
