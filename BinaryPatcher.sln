@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31605.320
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31612.314
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryPatcher", "BinaryPatcher\BinaryPatcher.csproj", "{B93D65DA-C0D1-4FC1-B861-3CB94BE2149A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryPatcher", "BinaryPatcher\BinaryPatcher.csproj", "{63051DAA-2CDD-4890-8E40-1A9C7E60E371}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B93D65DA-C0D1-4FC1-B861-3CB94BE2149A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B93D65DA-C0D1-4FC1-B861-3CB94BE2149A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B93D65DA-C0D1-4FC1-B861-3CB94BE2149A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B93D65DA-C0D1-4FC1-B861-3CB94BE2149A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63051DAA-2CDD-4890-8E40-1A9C7E60E371}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63051DAA-2CDD-4890-8E40-1A9C7E60E371}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63051DAA-2CDD-4890-8E40-1A9C7E60E371}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63051DAA-2CDD-4890-8E40-1A9C7E60E371}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {9ABAEB51-A9B7-4DE8-9E50-1C57549E0EA7}
+		SolutionGuid = {B22951D5-18A5-4158-A4BD-41410CD15545}
 	EndGlobalSection
 EndGlobal

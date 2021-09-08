@@ -2,6 +2,8 @@
 
 namespace BinaryPatcher
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Interoperability", "CA1416:Validate platform compatibility", Justification = "<Pending>")]
+
     public class Interface
     {
         private const string Banner =
@@ -23,7 +25,7 @@ namespace BinaryPatcher
 
         public static void Finish()
         {
-            Write("\n | ¤ | Press any key to exit.", ConsoleColor.Cyan);
+            Write("\n | ≡ | Press any key to exit.", ConsoleColor.Cyan);
             Console.ReadKey();
         }
 

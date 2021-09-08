@@ -1,8 +1,8 @@
 ﻿namespace BinaryPatcher
 {
-    internal class Program
+    class Program
     {
-        private static void Main()
+        static void Main()
         {
             Interface.Setup();
             Targets.Run();
