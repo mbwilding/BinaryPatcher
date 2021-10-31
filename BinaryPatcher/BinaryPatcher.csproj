@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net5.0</TargetFramework>
-    <ApplicationIcon>D:\Development\GitHub\BinaryPatcher\BinaryPatcher\icon.ico</ApplicationIcon>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
     <Company>Wilding Studios</Company>
     <Authors>Matthew Wilding</Authors>
   </PropertyGroup>
@@ -19,5 +19,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="icon.ico" />
+  </ItemGroup>
 
 </Project>
