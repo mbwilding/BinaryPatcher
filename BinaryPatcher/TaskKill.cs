@@ -1,16 +1,15 @@
 ﻿using System.Diagnostics;
 
-namespace BinaryPatcher
+namespace BinaryPatcher;
+
+public static class TaskKill
 {
-    public class TaskKill
+    public static void Run(string name)
     {
-        public static void Run(string name)
+        foreach (var process in Process.GetProcessesByName(name))
         {
-            foreach (var process in Process.GetProcessesByName(name))
-            {
-                process.Kill();
-                process.WaitForExit();
-            }
+            process.Kill();
+            process.WaitForExit();
         }
     }
 }

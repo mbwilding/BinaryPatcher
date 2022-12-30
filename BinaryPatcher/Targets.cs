@@ -1,82 +1,108 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Spectre.Console;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
 
-namespace BinaryPatcher
+namespace BinaryPatcher;
+
+public class Targets
 {
-    public class Targets
+    private class PatchFile
     {
-        public static void Run()
-        {
-            // Values exported from Binary Difference
+        public string Name { get; init; } = null!;
+        public string Path { get; init; } = null!;
+        public Dictionary<long, string> Payload { get; init; } = null!;
+    }
+    
+    public static async Task Run()
+    {
+        var currentDirectory = Directory.GetCurrentDirectory();
+        
+        var deserializer = new DeserializerBuilder()
+            .WithNamingConvention(PascalCaseNamingConvention.Instance)
+            .Build();
 
-            Patch
-            (
-                "Cisco Packet Tracer 7.2.2 (x86)",
-                @"C:\Program Files (x86)\Cisco Packet Tracer 7.2.2\bin\PacketTracer7.exe",
-                new Dictionary<long, string>()
-                {
-                    {0x1063AA4, "E92B0100"},    // Unlock config tab
-                    {0x16AAB0D, "E9530100"}     // Speed up loading times
-                }
-            );
-            Patch
-            (
-                "Cisco Packet Tracer 8.0.1 (x86)",
-                @"C:\Program Files (x86)\Cisco Packet Tracer 8.0.1\bin\PacketTracer.exe",
-                new Dictionary<long, string>()
-                {
-                    {0x112EC6D, "E9380200"},    // Unlock config tab
-                    {0x191806D, "E9FF0600"}     // Speed up loading times
-                }
-            );
-            Patch
-            (
-                "Cisco Packet Tracer 7.2.2 (x64)",
-                @"C:\Program Files\Cisco Packet Tracer 7.2.2\bin\PacketTracer7.exe",
-                new Dictionary<long, string>()
-                {
-                    {0x147B638, "E9490100"},    // Unlock config tab
-                    {0x1C58604, "E9650500"}     // Speed up loading times
-                }
-            );
-            Patch
-            (
-                "Cisco Packet Tracer 8.0.1 (x64)",
-                @"C:\Program Files\Cisco Packet Tracer 8.0.1\bin\PacketTracer.exe",
-                new Dictionary<long, string>()
-                {
-                    {0x1720076, "E9FA0200"},    // Unlock config tab
-                    {0x218B564, "E9820800"}     // Speed up loading times
-                }
-            );
+        var yamlFiles = Directory.GetFiles(currentDirectory, "*.yml", SearchOption.TopDirectoryOnly)
+            .Select(Path.GetFileNameWithoutExtension)
+            .Cast<string>()
+            .ToList();
+
+        string file;
+        
+        if (!yamlFiles.Any())
+        {
+            Interface.Write(" | x | No patch files found");
+            return;
         }
 
-        private static void Patch(string name, string path, Dictionary<long, string> payloads)
+        if (yamlFiles.Count is 1)
+            file = yamlFiles.First();
+        else
         {
-            if (!File.Exists(path))
+            var selections = new SelectionPrompt<string>()
+                .Title("Select a [green]patch file[/]")
+                .PageSize(10)
+                .MoreChoicesText("[grey](Move up and down to reveal more files)[/]");
+            selections.AddChoices(yamlFiles);
+        
+            file = AnsiConsole.Prompt(selections);
+        }
+
+        var fileFull = $"{file}.yml";
+        var filePath = Path.Combine(currentDirectory, fileFull);
+        var fileContent = await File.ReadAllTextAsync(filePath);
+        var patches = deserializer.Deserialize<List<PatchFile>>(fileContent);
+
+        const string @default = "Fill me in";
+        bool fail = false;
+        if (patches.Any(x => x.Name == @default))
+        {
+            Interface.Write($" | x | Please edit the 'Name' field in the '{fileFull}' file");
+            fail = true;
+        }
+        if (patches.Any(x => x.Path == @default))
+        {
+            Interface.Write($" | x | Please edit the 'Path' field in the '{fileFull}' file");
+            fail = true;
+        }
+        
+        if (fail)
+            return;
+
+        Patch(patches);
+    }
+
+    private static void Patch(List<PatchFile> patchFile)
+    {
+        foreach (var patch in patchFile)
+        {
+            if (!File.Exists(patch.Path))
             {
-                Interface.Write(" | x | " + name + " not installed.", ConsoleColor.Gray);
-                return;
+                Interface.Write($" | x | {patch.Name} not found.", ConsoleColor.Gray);
+                continue;
             }
-            var backup = path + ".bak";
+            var backup = $"{patch.Path}.bak";
             if (File.Exists(backup))
             {
-                Interface.Write(" | > | " + name + " has already been patched.", ConsoleColor.Blue);
-                return;
+                Interface.Write($" | > | {patch.Name} has already been patched.", ConsoleColor.Blue);
+                continue;
             }
-            TaskKill.Run(Path.GetFileNameWithoutExtension(path));
-            File.Copy(path, backup);
-            using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Write, FileShare.Write))
+            TaskKill.Run(Path.GetFileNameWithoutExtension(patch.Path));
+            File.Copy(patch.Path, backup);
+            using (var fileStream = new FileStream(patch.Path, FileMode.Open, FileAccess.Write, FileShare.Write))
             {
-                foreach (var entry in payloads)
+                foreach (var entry in patch.Payload)
                 {
-                    var patch = Converters.HexToBytes(entry.Value);
+                    var bytes = Converters.HexToBytes(entry.Value);
                     fileStream.Seek(entry.Key, SeekOrigin.Begin);
-                    fileStream.Write(patch, 0, patch.Length);
+                    fileStream.Write(bytes, 0, bytes.Length);
                 }
             }
-            Interface.Write(" | ✓ | Successfully patched " + name + ".", ConsoleColor.Green);
+            Interface.Write($" | ✓ | Successfully patched {patch.Name}.", ConsoleColor.Green);
         }
     }
 }

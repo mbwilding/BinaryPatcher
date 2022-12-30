@@ -1,0 +1,20 @@
+- Name: Cisco Packet Tracer 7.2.2 (x86)
+  Path: C:\Program Files (x86)\Cisco Packet Tracer 7.2.2\bin\PacketTracer7.exe
+  Payload:
+    17185444: E92B0100
+    23767821: E9530100
+- Name: Cisco Packet Tracer 8.0.1 (x86)
+  Path: C:\Program Files (x86)\Cisco Packet Tracer 8.0.1\bin\PacketTracer.exe
+  Payload:
+    18017389: E9380200
+    26312813: E9FF0600
+- Name: Cisco Packet Tracer 7.2.2 (x64)
+  Path: C:\Program Files\Cisco Packet Tracer 7.2.2\bin\PacketTracer7.exe
+  Payload:
+    21476920: E9490100
+    29722116: E9650500
+- Name: Cisco Packet Tracer 8.0.1 (x64)
+  Path: C:\Program Files\Cisco Packet Tracer 8.0.1\bin\PacketTracer.exe
+  Payload:
+    24248438: E9FA0200
+    35173732: E9820800

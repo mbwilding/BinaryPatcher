@@ -1,12 +1,5 @@
-﻿namespace BinaryPatcher
-{
-    class Program
-    {
-        static void Main()
-        {
-            Interface.Setup();
-            Targets.Run();
-            Interface.Finish();
-        }
-    }
-}
+﻿using BinaryPatcher;
+
+Interface.Setup();
+await Targets.Run();
+Interface.Finish();

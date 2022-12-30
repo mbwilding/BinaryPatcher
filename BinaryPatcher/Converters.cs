@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Linq;
 
-namespace BinaryPatcher
+namespace BinaryPatcher;
+
+public static class Converters
 {
-    public class Converters
+    public static byte[] HexToBytes(string hex)
     {
-        public static byte[] HexToBytes(string hex)
-        {
-            return Enumerable.Range(0, hex.Length)
-                .Where(x => x % 2 == 0)
-                .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
-                .ToArray();
-        }
+        return Enumerable.Range(0, hex.Length)
+            .Where(x => x % 2 == 0)
+            .Select(x => Convert.ToByte(hex.Substring(x, 2), 16))
+            .ToArray();
     }
 }
